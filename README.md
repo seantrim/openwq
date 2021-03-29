@@ -74,9 +74,4 @@ $ git branch -u origin/main main
 <!--
 * See ["Working_example"](Working_example) folder
 * Updates coming soon!
-<<<<<<< HEAD
 -->
-
-=======
--->
->>>>>>> upstream/master
