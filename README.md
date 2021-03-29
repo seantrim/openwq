@@ -67,7 +67,7 @@ $ git branch -u origin/main main
 
 ## Supporting Scripts
 * Used for post-processing
-* See [OpenWQ_supporting_scripts](OpenWQ_supporting_scripts) folder
+* See [supporting_scripts](supporting_scripts) folder
 
 ## Working Example
 * Coming soon!
