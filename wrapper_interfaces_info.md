@@ -19,17 +19,22 @@
 
 ## Wrapper Interfaces
 * We will need to call C++ routines from OpenWQ from Fortran programs such as SUMMA and MESH.
-* The preferred option will be to use [SWIG](http://www.swig.org/) to automatically handle interaction between C++ anf Fortran
-* However, SWIG may not be compatible with certain classes of C++.
+* The core issue will be setting up pointers in Fortran that point toward the memory locations needed by the C++ code (and vice versa).
+* The preferred option will be to use [SWIG](http://www.swig.org/) to automatically handle interaction between C++ and Fortran
+* However, SWIG may not be compatible with certain classes within C++.
 * Another alternative is to use the [iso_C_binding](https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html) module in Fortran
-  * Manual control of interactions between Fortran and C++.
+  * The pointers between memory locations designated by Fortran and C++ would be set up manually.
   * A simple [example](https://modelingguru.nasa.gov/docs/DOC-2642) 
 
 ## Floating Point Arithmetic
-* The accuracy of mass balance calculations is impacted by difficulties encountered in floating point arithmetic 
-  * Numerical overflow due to division by zero
+* The accuracy of mass balance calculations is impacted by difficulties encountered in floating point arithmetic, such as: 
+  * Numerical overflow/undeflow can occur (e.g., division by a value near zero)
+  * Division by zero may result in undefined values
   * Cancellation errors produced by floating point subtraction
-* We can rewrite our formulas in a way that best handles these challenges.  
+* We can rewrite our formulas in a way that best handles these challenges.
+* Tranforming an expression via logarithms can occasionally help 
+* A summary of precision issues may be found [here](http://www.lahey.com/float.htm) and [here](https://www.soa.org/news-and-publications/newsletters/compact/2014/may/com-2014-iss51/losing-my-precision-tips-for-handling-tricky-floating-point-arithmetic/).
+  * Note that safe comparisons of real valued variables of finite precision will help the accuracy of comparisions between two mass values.   
 
 ## Test Problems
 * Create our own simple mass balance problem for quality control.
